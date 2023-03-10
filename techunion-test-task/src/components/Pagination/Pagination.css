@@ -1,0 +1,48 @@
+.pagination__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 400px;
+  margin-top: 20px;
+}
+
+.pagination__current-page {
+  display: block;
+  width: 15px;
+  margin-right: 5px;
+}
+
+.page {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0.005em;
+  color: #92929d;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.page_active {
+  border: 1px solid transparent;
+  background: #f86338;
+  border-radius: 16px;
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0.005em;
+  color: #ffffff;
+}
+
+.arrow_right {
+  transform: rotate(180deg);
+}
+
+.double_arrow_right {
+  transform: rotate(180deg);
+}

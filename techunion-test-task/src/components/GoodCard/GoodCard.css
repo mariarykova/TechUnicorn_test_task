@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Merriweather:wght@400;700&family=Roboto:wght@400;700;900&display=swap");
+
+.card {
+  max-width: 296px;
+  text-align: center;
+}
+
+.image {
+  width: 296px;
+  height: 296px;
+  margin-bottom: 20px;
+  position: relative;
+  background: #e2e2ea;
+}
+
+.like_svg {
+  position: absolute;
+  border: 1px solid transparent;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 11px 10px 5px 10px;
+  right: 16px;
+  top: 16px;
+  cursor: pointer;
+}
+
+.goods_img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.good_category {
+  font-family: "DM Sans";
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.008em;
+  color: #f3692e;
+  padding-bottom: 8px;
+}
+
+.title {
+  font-family: "Merriweather";
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.005em;
+  color: #11142d;
+  padding-bottom: 17px;
+  text-align: center;
+}
+
+.description {
+  font-family: "DM Sans";
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.008em;
+  color: #515151;
+  padding-bottom: 18px;
+}
+
+.price {
+  font-family: "Merriweather";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 120%;
+  letter-spacing: 0.005em;
+  color: #f3692e;
+}

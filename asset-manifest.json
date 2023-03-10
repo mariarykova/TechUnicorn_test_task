@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/mariarykova/TechUnicorn_test_task/tree/main/techunion-test-task/static/css/main.b0589459.css",
+    "main.js": "/mariarykova/TechUnicorn_test_task/tree/main/techunion-test-task/static/js/main.805dd0e6.js",
+    "static/js/787.eee49a44.chunk.js": "/mariarykova/TechUnicorn_test_task/tree/main/techunion-test-task/static/js/787.eee49a44.chunk.js",
+    "static/media/heart.svg": "/mariarykova/TechUnicorn_test_task/tree/main/techunion-test-task/static/media/heart.4d9e87a028e574016d982fa87435f949.svg",
+    "index.html": "/mariarykova/TechUnicorn_test_task/tree/main/techunion-test-task/index.html",
+    "static/media/double_arrow_left.svg": "/mariarykova/TechUnicorn_test_task/tree/main/techunion-test-task/static/media/double_arrow_left.bd846c45a5d76c0d14ba0ef2cac9ee7a.svg",
+    "static/media/chevron-left.svg": "/mariarykova/TechUnicorn_test_task/tree/main/techunion-test-task/static/media/chevron-left.faf35dfdaeea7b72c740cb086d365a7e.svg",
+    "static/media/filter.svg": "/mariarykova/TechUnicorn_test_task/tree/main/techunion-test-task/static/media/filter.f392fd6bc25778805e4cb26249729aae.svg",
+    "static/media/arrow.svg": "/mariarykova/TechUnicorn_test_task/tree/main/techunion-test-task/static/media/arrow.8a8c55cc11bc8fca0ec7ca4ac93d8b04.svg",
+    "main.b0589459.css.map": "/mariarykova/TechUnicorn_test_task/tree/main/techunion-test-task/static/css/main.b0589459.css.map",
+    "main.805dd0e6.js.map": "/mariarykova/TechUnicorn_test_task/tree/main/techunion-test-task/static/js/main.805dd0e6.js.map",
+    "787.eee49a44.chunk.js.map": "/mariarykova/TechUnicorn_test_task/tree/main/techunion-test-task/static/js/787.eee49a44.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b0589459.css",
+    "static/js/main.805dd0e6.js"
+  ]
+}

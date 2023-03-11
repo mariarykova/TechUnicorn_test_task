@@ -1,3 +1,8 @@
+.section_filters {
+  position: sticky;
+  top: 0;
+}
+
 .title {
   font-family: "Merriweather";
   font-style: normal;
@@ -26,12 +31,12 @@
 
 .color {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .categories {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   flex-direction: column;
 }
 
@@ -71,4 +76,25 @@
   font-size: 16px;
   letter-spacing: 0.005em;
   padding: 5px 5px;
+}
+
+@media screen and (max-width: 400px) {
+  .price_range {
+    margin-bottom: 15px;
+  }
+
+  .price_header {
+    margin-bottom: 0px;
+  }
+
+  .title {
+    padding-bottom: 10px;
+  }
+
+  .category {
+    margin-bottom: 0px;
+  }
+  .category_picked {
+    margin-bottom: 10px;
+  }
 }

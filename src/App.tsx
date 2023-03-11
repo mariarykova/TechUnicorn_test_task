@@ -9,31 +9,15 @@ import { Good } from "./types";
 
 function App() {
   const [items, setItems] = useState<Good[]>([]);
-
   const [filteredData, setFilteredData] = useState<Good[]>([]);
   const [wordEntered, setWordEntered] = useState<string>("");
-
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState<number>(1);
-
   const allPages = Math.ceil(filteredData.length / itemsPerPage);
-
   const [firstItem, setFirstItem] = useState<number>(1);
   const [lastItem, setLastItem] = useState<number>(6);
-
   const [currentCategory, setCurrentCategory] = useState("all categories");
-  const [isPickedCategory, setIsPickedCategory] = useState<boolean>(false);
-
   const [rangePrices, setRangePrices] = useState<[number, number]>([1, 1000]);
-
-  const onPageChange = (page: number) => {
-    setCurrentPage(page);
-    const startItem = (currentPage - 1) * itemsPerPage + 1;
-    console.log(startItem);
-    const endItem = currentPage * itemsPerPage;
-    setFirstItem(startItem);
-    setLastItem(endItem);
-  };
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -47,54 +31,73 @@ function App() {
       );
   }, []);
 
-  const filteredGoodsByCategory = useCallback(
-    (category: string) => {
-      const result = items.filter((item) => item.category === category);
-      setFilteredData(result);
-
+  const updateParams = useCallback(
+    ({
+      category,
+      searchWord,
+      rangePrices,
+    }: {
+      category: string;
+      searchWord: string;
+      rangePrices: [number, number];
+    }) => {
       if (category === "all categories") {
-        setFilteredData(items);
-      }
+        const newArray = items
 
-      setCurrentPage(1);
+          .filter(
+            (item) =>
+              item.price >= rangePrices[0] && item.price <= rangePrices[1]
+          )
+          .filter((item): boolean =>
+            item.title.toLowerCase().includes(searchWord)
+          );
+
+        setFilteredData(newArray);
+        setCurrentPage(1);
+      } else {
+        const newArray = items
+          .filter((item) => item.category === category)
+          .filter(
+            (item) =>
+              item.price >= rangePrices[0] && item.price <= rangePrices[1]
+          )
+          .filter((item): boolean =>
+            item.title.toLowerCase().includes(searchWord)
+          );
+
+        setFilteredData(newArray);
+        setCurrentPage(1);
+      }
     },
     [items]
   );
 
-  const handleFilter = ({
-    target,
-  }: React.ChangeEvent<HTMLInputElement>): void => {
-    const searchWord: string = target.value.toLowerCase();
-    setWordEntered(searchWord);
+  useEffect(() => {
+    updateParams({
+      category: currentCategory,
+      searchWord: wordEntered,
+      rangePrices,
+    });
+  }, [currentCategory, wordEntered, rangePrices, updateParams]);
 
-    const newFilter: Good[] = items.filter((item): boolean =>
-      item.title.toLowerCase().includes(searchWord)
-    );
-
-    // if (!searchWord) return setFilteredData(items);
-    setFilteredData(newFilter);
-    setCurrentPage(1);
-  };
+  useEffect(() => {
+    const startItem = (currentPage - 1) * itemsPerPage + 1;
+    const endItem = currentPage * itemsPerPage;
+    setFirstItem(startItem);
+    setLastItem(endItem);
+  }, [currentPage]);
 
   const renderCards = useCallback(() => {
     const startItem = (currentPage - 1) * itemsPerPage;
     const endItem = currentPage * itemsPerPage;
     return filteredData.slice(startItem, endItem).map((item) => {
-      return <GoodCard good={item} />;
+      return (
+        <div key={item.id}>
+          <GoodCard good={item} />
+        </div>
+      );
     });
   }, [filteredData, currentPage]);
-
-  const filterByPriceRange = useCallback(
-    (value: [number, number]) => {
-      const result = items.filter(
-        (item) => item.price >= value[0] && item.price <= value[1]
-      );
-
-      setFilteredData(result);
-      setCurrentPage(1);
-    },
-    [items]
-  );
 
   return (
     <div className="App">
@@ -102,17 +105,14 @@ function App() {
         <div className="filters">
           <GoodsFilters
             setCurrentCategory={setCurrentCategory}
-            filteredGoodsByCategory={filteredGoodsByCategory}
-            isPickedCategory={isPickedCategory}
             currentCategory={currentCategory}
             rangePrices={rangePrices}
             setRangePrices={setRangePrices}
-            filterByPriceRange={filterByPriceRange}
           />
         </div>
         <div className="search_goods">
           <div className="search">
-            <GoodsSearching handleSearch={handleFilter} />
+            <GoodsSearching setWordEntered={setWordEntered} />
           </div>
           <div className="sorting">
             <GoodsSorting firstItem={firstItem} lastItem={lastItem} />
@@ -122,7 +122,8 @@ function App() {
             allPagesNumber={allPages}
             itemsPerPage={itemsPerPage}
             itemsNumber={filteredData.length}
-            pageChange={onPageChange}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         </div>
       </div>

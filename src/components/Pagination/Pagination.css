@@ -46,3 +46,9 @@
 .double_arrow_right {
   transform: rotate(180deg);
 }
+
+@media screen and (max-width: 400px) {
+  .pagination__container {
+    width: 250px;
+  }
+}

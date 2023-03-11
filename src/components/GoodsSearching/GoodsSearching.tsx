@@ -1,20 +1,21 @@
 import React from "react";
-import { Input, Space } from "antd";
+import { Input } from "antd";
 import "./GoodsSearching.css";
 const { Search } = Input;
 
 const GoodsSearching = ({
-  handleSearch,
+  setWordEntered,
 }: {
-  handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setWordEntered: (value: string) => void;
 }) => {
   return (
-    <div>
+    <div className="section_search">
       <Search
         placeholder="Search products"
-        onSearch={(value) => console.log(value)}
-        onChange={(value) => handleSearch(value)}
-        style={{ width: 920 }}
+        onChange={(value) => {
+          setWordEntered(value.target.value);
+        }}
+        className="search_input"
       />
     </div>
   );

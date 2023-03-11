@@ -66,3 +66,13 @@
   letter-spacing: 0.005em;
   color: #f3692e;
 }
+
+@media screen and (max-width: 950px) {
+  .card {
+    max-width: 250px;
+  }
+
+  .image {
+    width: 250px;
+  }
+}

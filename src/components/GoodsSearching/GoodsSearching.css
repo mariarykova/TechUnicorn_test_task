@@ -6,3 +6,6 @@
   border-color: #f86338;
   border-left: none;
 }
+.search_input {
+  max-width: 920px;
+}

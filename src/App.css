@@ -11,6 +11,7 @@
   display: flex;
   margin: 0 auto;
   gap: 20px;
+  padding: 20px 20px;
 }
 
 .goods {
@@ -24,4 +25,33 @@
 
 .filters {
   width: 285px;
+}
+
+.search {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+@media screen and (max-width: 400px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .filters {
+    width: 285px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    align-self: center;
+    background-color: white;
+  }
+
+  .search {
+    top: 325px;
+  }
+
+  .App {
+    margin-top: 20px;
+  }
 }

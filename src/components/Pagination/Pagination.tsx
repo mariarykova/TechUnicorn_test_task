@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import chevronLeft from "../../images/chevron-left.svg";
 import doubleArrowLeft from "../../images/double_arrow_left.svg";
 import "./Pagination.css";
@@ -7,16 +7,11 @@ interface PaginationProps {
   allPagesNumber: number;
   itemsPerPage: number;
   itemsNumber: number;
-  pageChange: (page: number) => void;
+  currentPage: number;
+  setCurrentPage: (page: number) => void;
 }
 
 const Pagination: React.FC<PaginationProps> = (props) => {
-  const [currentPage, setCurrentPage] = useState<number>(1);
-
-  useEffect(() => {
-    props.pageChange(currentPage);
-  }, [currentPage, props]);
-
   const renderPages = useMemo(() => {
     const pagesNumber: number[] = [];
     for (let i = 1; i <= props.allPagesNumber; i++) {
@@ -26,19 +21,19 @@ const Pagination: React.FC<PaginationProps> = (props) => {
   }, [props.allPagesNumber]);
 
   const onFirstPage = (): void => {
-    setCurrentPage(1);
+    props.setCurrentPage(1);
   };
 
   const onLastPage = (): void => {
-    setCurrentPage(props.allPagesNumber);
+    props.setCurrentPage(props.allPagesNumber);
   };
 
   const onNextPage = (): void => {
-    setCurrentPage(currentPage + 1);
+    props.setCurrentPage(props.currentPage + 1);
   };
 
   const onPreviousPage = (): void => {
-    setCurrentPage(currentPage - 1);
+    props.setCurrentPage(props.currentPage - 1);
   };
 
   return (
@@ -53,10 +48,9 @@ const Pagination: React.FC<PaginationProps> = (props) => {
         return (
           <button
             key={index}
-            className={currentPage === page ? "page_active" : "page"}
+            className={props.currentPage === page ? "page_active" : "page"}
             onClick={() => {
-              props.pageChange(page);
-              setCurrentPage(page);
+              props.setCurrentPage(page);
             }}
           >
             {page}

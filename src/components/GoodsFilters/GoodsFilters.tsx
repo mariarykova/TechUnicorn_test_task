@@ -6,27 +6,22 @@ import arrow from "../../images/arrow.svg";
 
 function GoodsFilters({
   setCurrentCategory,
-  filteredGoodsByCategory,
-  isPickedCategory,
   currentCategory,
   setRangePrices,
   rangePrices,
-  filterByPriceRange,
-}: {
+}: // filterByPriceRange,
+{
   setCurrentCategory: (category: string) => void;
-  filteredGoodsByCategory: (category: string) => void;
-  isPickedCategory: boolean;
   currentCategory: string;
   rangePrices: [number, number];
   setRangePrices: (value: [number, number]) => void;
-  filterByPriceRange: (value: [number, number]) => void;
+  // filterByPriceRange: (value: [number, number]) => void;
 }) {
   const [categories, setCategories] = useState([]);
 
   const onChange = (value: [number, number]) => {
-    console.log("onChange: ", value);
     setRangePrices(value);
-    filterByPriceRange(value);
+    // filterByPriceRange(value);
   };
 
   useEffect(() => {
@@ -38,7 +33,7 @@ function GoodsFilters({
   }, []);
 
   const renderCategories = () => {
-    return categories.map((category) => {
+    return categories.map((category, index) => {
       return (
         <div
           className={
@@ -46,8 +41,8 @@ function GoodsFilters({
           }
           onClick={() => {
             setCurrentCategory(category);
-            filteredGoodsByCategory(category);
           }}
+          key={index}
         >
           <div>{category}</div>
           <img src={arrow} alt="arrow" />
@@ -57,7 +52,7 @@ function GoodsFilters({
   };
 
   return (
-    <div>
+    <div className="section_filters">
       <div className="price_range">
         <div className="price_header">
           <div className="title">Price</div>
@@ -91,7 +86,6 @@ function GoodsFilters({
             }
             onClick={() => {
               setCurrentCategory("all categories");
-              filteredGoodsByCategory("all categories");
             }}
           >
             all categories
